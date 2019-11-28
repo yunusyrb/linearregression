@@ -1,6 +1,5 @@
-import numpy as np
 import pandas as pd
-import  matplotlib as plt
+import numpy as np
 
 veri=pd.read_csv("veriler.csv")
 
@@ -71,3 +70,20 @@ regressor2.fit(x_train, y_train)
 y_pred = regressor2.predict(x_test)
 
 print(y_pred)
+
+import statsmodels.api as smf
+x = np.append(arr = np.ones((22,1)).astype(int), values=veri, axis=1)
+x_l = veri.iloc[:, [0, 1, 2, 3, 4, 5]].values
+r_ols = smf.OLS(endog=boy, exog=x_l)
+r = r_ols.fit()
+print(r.summary())
+
+x_l = veri.iloc[:, [0, 1, 2, 3, 5]].values
+r_ols = smf.OLS(endog=boy, exog=x_l)
+r = r_ols.fit()
+print(r.summary())
+
+x_l = veri.iloc[:, [0, 1, 2, 3]].values
+r_ols = smf.OLS(endog=boy, exog=x_l)
+r = r_ols.fit()
+print(r.summary())
